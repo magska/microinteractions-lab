@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="assets/reset.css">
+  <style>
+    form {
+      width: 300px;
+      margin: 50px;
+      padding: 32px;
+      border: 1px solid darkgray;
+    }
+    input {
+      margin-bottom: 20px;
+      width: 100%;
+      transition: all 0.5s;
+    }
+    h1 {
+      margin-bottom: 22px;
+    }
+    button {
+      float: right;
+      height: 40px;
+      width: 100px;
+      background-color: dodgerblue;
+      transition: all 0.3s;
+      border: 0;
+      border-radius: 5px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .clear {
+      clear: both;
+    }
+    #padlock-icon-container {
+      height: 30px;
+      width: 90px;
+      margin: 0 auto;
+      margin-top: 10px;
+      padding: 2px;
+      position: absolute;
+    }
+    #padlock-icon {
+      position: relative;
+      height: 100%;
+      width: auto;
+      margin: 0 auto;
+    }
+    #success-text {
+      height: 30px;
+      width: 90px;
+      margin: 0 auto;
+      background-color: green;
+      position: absolute;
+      margin-top: 50px;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background-color: blue;
+    }
+
+    #login-button.validating #button-content {
+      animation-name: validating-text-fade-out;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes validating-text-fade-out {
+      100% {
+        transform: translateY(-38px);
+      }
+    }
+
+    #login-button.validating #padlock-icon {
+      animation-name: validating-pulse;
+      animation-duration: 2s;
+      animation-delay: 1s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes validating-pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(0.8);
+        opacity: 0.6;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    #login-button.failed #button-content {
+      transform: translateY(-38px);
+    }
+
+    #login-button.failed {
+      background-color: red !important;
+      animation-name: failed-shake;
+      animation-duration: 0.2s;
+      animation-iteration-count: 2;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes failed-shake {
+      33% {
+        transform: translateX(8px);
+      }
+      75% {
+        transform: translateX(-8px);
+        background-color: seagreen;
+      }
+      100% {
+        transform: translateX(0px);
+      }
+    }
+
+    #email.error {
+      background-color: lightcoral;
+      opacity: 0.6s;
+    }
+
+    #login-button.success {
+      background-color: green !important;
+    }
+
+    #login-button.success #button-content {
+      animation-name: success-animation;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes success-animation {
+      0% {
+        transform: translateY(-38px)
+      }
+      100% {
+        transform: translateY(-74px);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <form>
+    <h1>Log in</h1>
+    <label for="email">E-mail</label>
+    <input type="text" name="email" id="email" />
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" />
+
+    <button id="login-button">
+      <div id="button-content">
+        <div class="text">Log in</div>
+        <div id="padlock-icon-container">
+          <img src="assets/padlock.png" alt="padlock" id="padlock-icon" />
+        </div>
+        <div id="success-text">✔</div>
+      </div>
+    </button>
+    <div class="clear"></div>
+  </form>
+
+  <script>
+    const loginButton = document.getElementById('login-button');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    loginButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginButton.classList.add('validating');
+      setTimeout(() => {
+        if (email.value === 'wrong') {
+          loginButton.classList.replace('validating', 'failed');
+          email.classList.add('error');
+        }
+        else {
+          loginButton.classList.replace('validating', 'success');
+        }
+      }, 3000)
+    });
+  </script>
+</body>
+</html>

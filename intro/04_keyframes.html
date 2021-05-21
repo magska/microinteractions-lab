@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transitions</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation-name: colorrama;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+            }
+
+        @keyframes colorrama {
+            0%   {background-color: red;}
+            25%  {background-color: yellow;}
+            50%  {background-color: blue;}
+            100% {background-color: green;}
+        }
+
+        #submit {
+            padding: 10px 16px;
+            background-color: lightgray;
+            color:rgba(0, 0, 0, 1);
+            border: 0;
+            border-radius: 5px;
+            width: 115px;
+            font-size: 14px;
+            overflow: hidden;
+            margin-left: 0px;
+        }
+        #submit.clicked {
+            animation-name: submit;
+            animation-duration: 3s;
+            animation-fill-mode: forwards;
+        }
+        .clicked:after {
+            animation-name: submittext;
+            animation-duration: 3s;
+            animation-fill-mode: forwards;
+            font-size: 14px;
+            content: "";
+            margin-left: 0px;
+            color: rgba(255, 255, 255, 0);
+        }
+
+        @keyframes  submit {
+            20% { 
+                transform: translateY(5px);
+            }
+            40% {
+                transform: rotate(-90deg);
+            }
+            80% {
+                transform: rotate(-90deg);
+                transform: translateX(20px);
+            }
+            90% {
+                transform: rotateX(0deg);
+                transform: translateX(20px);
+                color: rgba(0, 0, 0, 0);
+                background-color: lightgray;
+            }
+            100% {
+                background-color: green;
+                transform: translateX(0px);
+                color: rgba(0, 0, 0, 0);
+            }
+        }
+
+        @keyframes submittext {
+            90% {
+                margin-left: 0px;
+            }
+            91% {
+                color: rgba(255, 255, 255, 0);
+                content: "";
+                margin-left: -65px;
+            }
+            100% {
+                color: rgba(255, 255, 255, 1);
+                content: "✔ Submitted";
+                margin-left: -65px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <form>
+        <div id="box">
+
+        </div>
+        <div style="border: 1px solid; margin: 20px 0; padding: 16px">
+            <div>
+                <label>Example form</label>
+                <br />
+                <input type="text" />
+            </div>
+            <div style="margin: 30px 0 0 35px">
+                <button id="submit">Submit me</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        const button = document.getElementById("submit");
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            button.classList.add('clicked');
+        })
+    </script>
+</body>
+</html>

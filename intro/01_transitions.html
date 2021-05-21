@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transitions</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            color: white;
+            background-color: red;
+            transition: width 2s, background-color 2s;
+        }
+        #box1:hover {
+            width: 300px; 
+            background-color: green;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            color: white;
+            background-color: blue;
+            transition: width 2s, height 2s;
+        }
+        #box2:hover {
+            width: 200px; 
+            height: 200px;
+        }
+
+        #box3 {
+            width: 100px;
+            height: 100px;
+            color: white;
+            background-color: green;
+            transition: width 2s, height 2s;
+        }
+        #box3:active {
+            width: 200px; 
+            height: 200px;
+        }
+
+ 
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <p>Some text</p>
+    </div>
+    <div id="box2">
+    </div>
+    <div id="box3">
+    </div>
+</body>
+</html>

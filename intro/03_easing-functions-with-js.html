@@ -1,0 +1,57 @@
+<!-- https://easings.net/ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Timing functions</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            color: white;
+            background-color: red;
+            transition: width 2s ease-in-out 0s, background-color 2s ease-out 2s;
+        }
+        #box1:hover {
+            width: 300px; 
+            background-color: green;
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            color: white;
+            background-color: blue;
+            transition: width 2s ease-out 2s, height 2s ease-in 0s, background-color 2s;
+        }
+        #box2.active {
+            width: 200px; 
+            height: 200px;
+        }
+
+        #box2:active {
+            background-color: orange;
+        }
+
+ 
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <p>Some text</p>
+    </div>
+    <div id="box2">
+    </div>
+    <button onclick="clickHandler()">Click me for magic</button>
+
+    <script>
+        function clickHandler() {
+            const box2 = document.getElementById('box2');
+
+            box2.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
